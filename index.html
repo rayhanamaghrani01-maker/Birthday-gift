@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Happy Birthday ❤️</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      font-family: Arial, sans-serif;
+      overflow: hidden;
+
+      background:
+        radial-gradient(circle at top, #ff5fa2, transparent 40%),
+        linear-gradient(135deg, #170014, #050005);
+
+      color: white;
+    }
+
+    .container {
+      width: 100%;
+      padding: 20px;
+      text-align: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .card {
+      max-width: 500px;
+      margin: auto;
+      padding: 40px 25px;
+
+      background: rgba(20, 0, 15, 0.9);
+      border: 1px solid rgba(255, 105, 180, 0.5);
+      border-radius: 25px;
+
+      box-shadow:
+        0 0 30px rgba(255, 20, 147, 0.35),
+        0 0 80px rgba(255, 20, 147, 0.15);
+
+      animation: appear 1s ease;
+    }
+
+    .emoji {
+      font-size: 70px;
+      animation: bounce 1.5s infinite;
+    }
+
+    h1 {
+      margin-top: 20px;
+      font-size: clamp(35px, 10vw, 60px);
+
+      background: linear-gradient(
+        90deg,
+        #fff,
+        #ff69b4,
+        #fff
+      );
+
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    h2 {
+      margin-top: 10px;
+      color: #ff8ac5;
+      font-size: clamp(20px, 5vw, 28px);
+    }
+
+    p {
+      margin-top: 20px;
+      line-height: 1.7;
+      color: #eee;
+      font-size: 16px;
+    }
+
+    button {
+      margin-top: 30px;
+      padding: 14px 30px;
+
+      border: none;
+      border-radius: 30px;
+
+      background: #ff1493;
+      color: white;
+
+      font-size: 16px;
+      font-weight: bold;
+
+      cursor: pointer;
+
+      box-shadow: 0 0 20px rgba(255, 20, 147, 0.5);
+
+      transition: 0.3s;
+    }
+
+    button:hover {
+      transform: scale(1.08);
+      box-shadow: 0 0 35px #ff1493;
+    }
+
+    .heart {
+      position: fixed;
+      bottom: -50px;
+      font-size: 25px;
+      pointer-events: none;
+      animation: floatUp 6s linear forwards;
+      z-index: 1;
+    }
+
+    .confetti {
+      position: fixed;
+      top: -20px;
+      width: 10px;
+      height: 10px;
+      pointer-events: none;
+      z-index: 10;
+
+      animation: fall 3s linear forwards;
+    }
+
+    @keyframes appear {
+      from {
+        opacity: 0;
+        transform: scale(0.8);
+      }
+
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    @keyframes bounce {
+      0%, 100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-12px);
+      }
+    }
+
+    @keyframes floatUp {
+      from {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0;
+      }
+
+      20% {
+        opacity: 1;
+      }
+
+      to {
+        transform: translateY(-110vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    @keyframes fall {
+      from {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+      }
+
+      to {
+        transform: translateY(110vh) rotate(720deg);
+        opacity: 0;
+      }
+    }
+
+    @media (max-width: 500px) {
+      .card {
+        padding: 30px 20px;
+      }
+
+      .emoji {
+        font-size: 55px;
+      }
+
+      p {
+        font-size: 15px;
+      }
+
+      button {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+    <div class="card">
+
+      <div class="emoji">🎂</div>
+
+      <h1>Happy Birthday!</h1>
+
+      <h2>To Someone Very Special ❤️</h2>
+
+      <p>
+        Wishing you a beautiful birthday filled with
+        happiness, love, laughter and unforgettable moments. 💕
+      </p>
+
+      <button onclick="celebrate()">
+        Celebrate 🎉
+      </button>
+
+    </div>
+  </div>
+
+  <script>
+
+    function celebrate() {
+
+      // Confetti
+      for (let i = 0; i < 100; i++) {
+
+        const confetti = document.createElement("div");
+
+        confetti.classList.add("confetti");
+
+        confetti.style.left =
+          Math.random() * 100 + "vw";
+
+        confetti.style.background =
+          randomColor();
+
+        confetti.style.animationDuration =
+          (2 + Math.random() * 3) + "s";
+
+        confetti.style.width =
+          (5 + Math.random() * 8) + "px";
+
+        confetti.style.height =
+          (5 + Math.random() * 8) + "px";
+
+        document.body.appendChild(confetti);
+
+        setTimeout(() => {
+          confetti.remove();
+        }, 5000);
+      }
+
+      // Hearts
+      for (let i = 0; i < 20; i++) {
+
+        const heart = document.createElement("div");
+
+        heart.classList.add("heart");
+
+        heart.innerHTML = "❤️";
+
+        heart.style.left =
+          Math.random() * 100 + "vw";
+
+        heart.style.animationDuration =
+          (3 + Math.random() * 4) + "s";
+
+        document.body.appendChild(heart);
+
+        setTimeout(() => {
+          heart.remove();
+        }, 7000);
+      }
+    }
+
+    function randomColor() {
+
+      const colors = [
+        "#ff1493",
+        "#ff69b4",
+        "#ffffff",
+        "#ffd700",
+        "#00ffff",
+        "#7fff00"
+      ];
+
+      return colors[
+        Math.floor(Math.random() * colors.length)
+      ];
+    }
+
+    // Small automatic confetti when page opens
+    setTimeout(celebrate, 700);
+
+  </script>
+
+</body>
+</html>
